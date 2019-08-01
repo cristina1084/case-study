@@ -1,10 +1,10 @@
-//Script for to-do page
-var counter = 0;    
+//Script for To-Do page
+
 $(document).ready(function(){
     function aj(){
         $.ajax({
             type:"GET",
-            url:"https://jsonplaceholder.typicode.com/todos",     //To-Do API
+            url:"https://jsonplaceholder.typicode.com/todos",  //T-Do API
             success:function(data){
                 var output='<ul class="list-group list-group-flush " >';
                 for (var i in data){
@@ -17,23 +17,22 @@ $(document).ready(function(){
                                          
                 }
                 output+='</ul>';
-                $('input[type="checkbox"]').change(function(){        //to count checked boxes
-                    if($(this).prop("checked") == true){
-                        counter+=1;
-                    }
-                    else counter-=1;
-                    console.log(counter);
-                    
-                })
                 $('.result').html(output);
-                var todopromise = new Promise((resolve,reject)=>{        //promise
-                    if(counter==5) resolve("Congrats. 5 Tasks have been Successfully Completed");
-                    else reject();
+                var todopromise = new Promise((resolve,reject)=>{   //promise
+                    var counter = 0;    
+                    $('input[type="checkbox"]').change(function(){       //count number of checked boxes
+                        if($(this).prop("checked") == true){
+                            counter+=1;
+                            if(counter==5) resolve("Congrats. 5 Tasks have been Successfully Completed");
+                        }
+                        else counter-=1;
+                        console.log(counter);
+                        
+                    })
                 });
                 todopromise.then((msg)=>{
                     alert(msg);
                 })
-                .catch(()=>{})
             }
         });
     }
