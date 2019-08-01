@@ -4,16 +4,17 @@ $(document).ready(function(){
             type:"GET",
             url:"https://jsonplaceholder.typicode.com/todos",
             success:function(data){
-                var output="";
+                var output='<ul class="list-group list-group-flush " >';
                 for (var i in data){
-                    output+='<div class="custom-control custom-checkbox">';
+                    output+='<li class="list-group-item"><div class="custom-control custom-checkbox">';
                     if(data[i].completed==true)
                         output+='<input type="checkbox" class="custom-control-input" id="customCheck'+data[i].id+'" value="'+data[i].id+'" checked disabled>'
                     else
                         output+='<input type="checkbox" class="custom-control-input" id="customCheck'+data[i].id+'" value="'+data[i].id+'">'
-                    output+='<label class="custom-control-label" for="customCheck'+data[i].id+'">'+data[i].title+'</label></div>';
+                    output+='<label class="custom-control-label" for="customCheck'+data[i].id+'">'+data[i].title+'</label></div></li>';
                                          
                 }
+                output+='</ul>';
                 $('.result').html(output);
                 var todopromise = new Promise((resolve,reject)=>{
                     var counter = 0;    
