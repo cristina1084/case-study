@@ -7,7 +7,10 @@ $(document).ready(function(){
                 var output="";
                 for (var i in data){
                     output+='<div class="custom-control custom-checkbox">';
-                    output+='<input type="checkbox" class="custom-control-input" id="customCheck'+data[i].id+'" value="'+data[i].id+'">'
+                    if(data[i].completed==true)
+                        output+='<input type="checkbox" class="custom-control-input" id="customCheck'+data[i].id+'" value="'+data[i].id+'" checked disabled>'
+                    else
+                        output+='<input type="checkbox" class="custom-control-input" id="customCheck'+data[i].id+'" value="'+data[i].id+'">'
                     output+='<label class="custom-control-label" for="customCheck'+data[i].id+'">'+data[i].title+'</label></div>';
                                          
                 }
