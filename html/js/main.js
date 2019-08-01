@@ -1,5 +1,5 @@
 //Script for to-do page
-
+var counter = 0;    
 $(document).ready(function(){
     function aj(){
         $.ajax({
@@ -17,7 +17,6 @@ $(document).ready(function(){
                                          
                 }
                 output+='</ul>';
-                var counter = 0;    
                 $('input[type="checkbox"]').change(function(){        //to count checked boxes
                     if($(this).prop("checked") == true){
                         counter+=1;
